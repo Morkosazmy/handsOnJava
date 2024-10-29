@@ -1,10 +1,14 @@
 package handsOnJava;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class handsOnJava {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException { /* File not found exception is for the 4th code ! */
 	
 		/*	1st code	*/
 	/*	
@@ -26,11 +30,13 @@ public class handsOnJava {
 			System.out.println("u got the only sum in the if condition, CONGRATS ! ");
 		else
 			System.out.println("not the sum we were expecting sorry ! "); 
+			
+		scanner.close();
 			*/
 
 			/*2nd code*/		
 		/* this code will only work if my name is Morkos */
-		
+/*		
 	System.out.println("Write in your name please : ");
 		Scanner scanner = new Scanner(System.in);
 		String name = scanner.nextLine();
@@ -87,12 +93,49 @@ public class handsOnJava {
 	}
 		else
 			System.out.println("This program isn't goint to work because you inserted the wrong name ! ");
-		
+			scanner.close();
+		*/
 		
 		
 		/*	3rd code	*/ /***************************************************************/
 		
+		/* in this code we'll try to take the input of an array of ints ( int[] for grades as an example ) : */
 		
+	/*	System.out.println("Enter the size of the array of grades : ");
+		int size;
+		Scanner scanner = new Scanner(System.in);
+		size = scanner.nextInt();
+		
+		int[] grades = new int[size];
+		int i;
+		System.out.println("Enter the value and click ENTER after typing the numeric value : ");
+		for (i = 0; i<size; i++) {
+			grades [i] = scanner.nextInt();
+			System.out.println("You entered the value " + grades[i]);
+		}
+		
+		System.out.println("The list of the grades you entered in reverse is : ");
+		System.out.println("size " + size);
+		for(i=size; i>0; i--) {
+			System.out.println( "grade [" + i + "] " +"= " + grades[i-1]);
+			}
+			scanner.close();
+		*/
+		
+		/*4th code*/
+		/*This code can read from a text file*/
+		
+		Scanner scanner = new Scanner(new File("C:\\Users\\morko\\git\\repository1\\handsOnJava\\src\\Students\\"));
+		
+		List<String> students = new ArrayList<String>();
+		
+		while (scanner.hasNextLine()) {
+			students.add(scanner.nextLine());
+		}		
+		System.out.println(students.size());
+		for(int i = 0 ; i<students.size() ; i++) {
+			System.out.println("name : " + students.get(i));
+		}
 	}
 
 }

@@ -142,7 +142,7 @@ public class handsOnJava {
 		
 		/*5th code*/
 		/*This code is for using LinkedList as a Queue*/
-		LinkedList<String> students = new LinkedList<String>(); //we have a linked list named students that we can use now ! 
+	/*	LinkedList<String> students = new LinkedList<String>(); //we have a linked list named students that we can use now ! 
 		students.add("Morkos");
 		students.add("Sally");
 		students.add("Caleb\n");
@@ -172,7 +172,7 @@ public class handsOnJava {
 		System.out.println("Re-adding the students in the same order as before\n");
 		students.add("Morkos");
 		students.add("Sally");
-		students.add("Caleb\n");
+		students.add("Caleb");
 		for (String student : students) {
 			System.out.println(student);
 		}
@@ -183,7 +183,57 @@ public class handsOnJava {
 		
 		// I just cant figure out why when i use students.remove() on the last one it prints an extra line of "\n", it just makes no sense and in the first dequeue try 
 		//it doesnt occur because i used "System.out.println(students.removeLast() + students.removeLast());" Kinda weird...
+		// the extra line was because i used to add caleb\n instead of caleb
+		*/
+		
+		
+		/*6th code (day 6 video) */
+		
+		/* In this code i'll be trying to compare add and push commands in a LinkedList and trying to equally figure out the difference between remove, removeFirst and pop. */
+		/*
+		int i;
+		Scanner scanner = new Scanner(System.in);
+		LinkedList<String> students = new LinkedList<String>();
+		students.add("Morkos elzany");
+		students.add("zanyook");
+		students.add("Caleb");
+		students.push("Raslan");
+		students.push("Raslan");
+		students.add("geeko");
+		
+		for (String student : students) {
+			System.out.println(student);
+		}
+		System.out.println();
+	//	LinkedList<String> removedStudents = new LinkedList<String>();
+	//	String secondName;
+	//	String chosenName;
+	/*	System.out.println("Enter your name ! ");
+		chosenName = scanner.nextLine();
+		secondName = students.get(0);
+		int where;
+		System.out.println("Where do you want to put this name ! (your limit is  " + students.size());
+		where = scanner.nextInt();
+		for(i = 0; i<where-1; i++) {
+			removedStudents.push(students.pop());
+		}*/
+	//	students.push(chosenName);
+	/*	for(i = 0; i<where-1; i++) {
+			students.push(removedStudents.pop());
+		}*/
+	//	students.pop();
+	//	students.remove(); //both remove and pop take out the object on the top of the list, while removeLast removes the one on the bottom. the ONLY exception is that remove() can take 
+		//an integer to choose where the index to be removed is or even take the object itself.
+	//	for (String student : students) {
+	//		System.out.println(student);
+	//	}*/
+		
+		/*	7th CODE */ /*************************************************************************/
+		/* ITERATORS *//**************************************************************************/
 
-	}
-
+		
+		
+		
+		
 }
+}	

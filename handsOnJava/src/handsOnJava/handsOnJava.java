@@ -1,6 +1,7 @@
 package handsOnJava;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 import java.io.File;
@@ -124,7 +125,7 @@ public class handsOnJava {
 		
 		/*4th code*/
 		/*This code can read from a text file*/
-		
+	/*	
 		Scanner scanner = new Scanner(new File("C:\\Users\\morko\\git\\repository1\\handsOnJava\\src\\Students\\"));
 		
 		List<String> students = new ArrayList<String>();
@@ -136,6 +137,53 @@ public class handsOnJava {
 		for(int i = 0 ; i<students.size() ; i++) {
 			System.out.println("name : " + students.get(i));
 		}
+		*/
+		
+		
+		/*5th code*/
+		/*This code is for using LinkedList as a Queue*/
+		LinkedList<String> students = new LinkedList<String>(); //we have a linked list named students that we can use now ! 
+		students.add("Morkos");
+		students.add("Sally");
+		students.add("Caleb\n");
+		for(String student : students) {
+			System.out.println(student);
+		}
+		System.out.println("the names above this line are the ones in the list currently and the following ones are the names of the ones removed after this printed line :\n");
+		System.out.println(students.remove());
+		System.out.println(students.remove());
+		System.out.println(students.remove());
+		//the code above uses the LinkedList as a Queue ( FIFO : First In First Out ) ! 
+		//now we'll be trying to get the LinkedList to work as a ( FILO : First In Last Out ) !
+		
+		students.add("Morkos");
+		students.add("Sally");
+		students.add("Caleb\n");
+		
+		System.out.println("The current list contains the following names in order :\n");
+		for(String student : students) {
+			System.out.println(student);
+		}
+		//let's try to dequeue from the opposite side 
+		System.out.println("The following names are removed from the LinkedList in order !\n");
+		System.out.println(students.removeLast() + students.removeLast());
+		System.out.println(students.removeLast() + "\n"); // It works ! We used removeLast so i kinda told it to go from the last one !
+		//let's try another approach 
+		System.out.println("Re-adding the students in the same order as before\n");
+		students.add("Morkos");
+		students.add("Sally");
+		students.add("Caleb\n");
+		for (String student : students) {
+			System.out.println(student);
+		}
+		
+		for(int i = students.size(); i > 0; i--) {
+			System.out.println("Removed : " + students.remove(i-1)); //Here i actually used a loop to start from the end of the LinkedList till it's beginning !
+		}
+		
+		// I just cant figure out why when i use students.remove() on the last one it prints an extra line of "\n", it just makes no sense and in the first dequeue try 
+		//it doesnt occur because i used "System.out.println(students.removeLast() + students.removeLast());" Kinda weird...
+
 	}
 
 }

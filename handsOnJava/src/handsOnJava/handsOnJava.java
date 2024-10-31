@@ -135,8 +135,8 @@ public class handsOnJava {
 
 		/*4th code*/
 		/*This code can read from a text file*/
-	/*	
-		Scanner scanner = new Scanner(new File("C:\\Users\\morko\\git\\repository1\\handsOnJava\\src\\Students\\"));
+		
+	/*	Scanner scanner = new Scanner(new File("C:\\Users\\morko\\git\\repository1\\handsOnJava\\src\\Students\\"));
 		
 		List<String> students = new ArrayList<String>();
 		
@@ -147,7 +147,7 @@ public class handsOnJava {
 		for(int i = 0 ; i<students.size() ; i++) {
 			System.out.println("name : " + students.get(i));
 		}
-		*/
+	*/	
 		
 		/********************************************************************************************************************************************/
 		
@@ -279,10 +279,38 @@ public class handsOnJava {
 		*/
 		/*********************************************************************************************************************************************************************/
 		
+		/* 8th CODE day 8 */ /**********************************************************************************/
+		/* 2D ARRAYS */ /**********************************************************************************/
 		
+	/*	
 		
+		int [][] matrice = 	
+			{
+				{64, 85, 84, 12, 46},
+				{2, 21,35,684, 684648, 44, 4, 5, 78, 21, 36},
+				{69, 468, 852, 474, 323, 55, 754},
+				{77, 22, 11, 13, 65}
+			};		
+		//we created a custom table where it's neither a rectangle nor a square table.
+		System.out.println("matrice[0][0] before modification = " + matrice[0][0]);
+		matrice[0][0] = 1;
+		System.out.println("matrice[0][0] after modification = " + matrice[0][0] + "\n\n");
+		//we modified one of the values 
+		System.out.println("matrice[0][0] before modification = " + matrice[2][6]);
+		matrice[2][6] = 69;
+		System.out.println("matrice[0][0] after modification = " + matrice[2][6] + "\n\n");
+
+		for(int i = 0; i<matrice.length;i++) {
+			System.out.print("[ ");
+			for(int j = 0; j<matrice[i].length; j++) {
+				System.out.print(matrice[i][j] + " ");
+			}
+			System.out.println("]");
+		}		
+		//We printed the whole table...
+	
+	*/	
 		
-		
-		
+
 	}
 }	

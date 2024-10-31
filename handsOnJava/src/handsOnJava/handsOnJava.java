@@ -1,6 +1,7 @@
 package handsOnJava;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
@@ -35,6 +36,10 @@ public class handsOnJava {
 		scanner.close();
 			*/
 
+		
+		/********************************************************************************************************************************************/
+
+		
 			/*2nd code*/		
 		/* this code will only work if my name is Morkos */
 /*		
@@ -97,6 +102,9 @@ public class handsOnJava {
 			scanner.close();
 		*/
 		
+
+		/********************************************************************************************************************************************/
+
 		
 		/*	3rd code	*/ /***************************************************************/
 		
@@ -122,7 +130,9 @@ public class handsOnJava {
 			}
 			scanner.close();
 		*/
-		
+
+		/********************************************************************************************************************************************/
+
 		/*4th code*/
 		/*This code can read from a text file*/
 	/*	
@@ -139,6 +149,7 @@ public class handsOnJava {
 		}
 		*/
 		
+		/********************************************************************************************************************************************/
 		
 		/*5th code*/
 		/*This code is for using LinkedList as a Queue*/
@@ -186,7 +197,9 @@ public class handsOnJava {
 		// the extra line was because i used to add caleb\n instead of caleb
 		*/
 		
-		
+
+		/********************************************************************************************************************************************/
+
 		/*6th code (day 6 video) */
 		
 		/* In this code i'll be trying to compare add and push commands in a LinkedList and trying to equally figure out the difference between remove, removeFirst and pop. */
@@ -225,15 +238,51 @@ public class handsOnJava {
 	//	students.remove(); //both remove and pop take out the object on the top of the list, while removeLast removes the one on the bottom. the ONLY exception is that remove() can take 
 		//an integer to choose where the index to be removed is or even take the object itself.
 	//	for (String student : students) {
-	//		System.out.println(student);
-	//	}*/
+	//		System.out.println(student);              // I noticed that we could've used students.add(2,"name") to put the name in index 2 "NOTE: 1st index is 0" instead of doing all that.
+	//
+		
+	//}*/
+
+		/********************************************************************************************************************************************/
 		
 		/*	7th CODE */ /*************************************************************************/
 		/* ITERATORS *//**************************************************************************/
-
+		/* In this code we'll be trying to use iterators on a LinkedList to be able to go through it */ 
+		
+	/*	LinkedList<String> students = new LinkedList<String>();
+		//we created a LinkedList of students...
+		
+		students.push("Raslan");
+		students.push("Jean");
+		students.push("Mark");
+		students.push("Caleb");
+		students.push("Mero");
+		students.push("Morkos");
+		students.add("Kid in the last bench");
+		//we added several names in the list of students ! Note that push stacks the name on the top of the list ( As in a stack ) while add puts the name at the bottom ( As in a queue )
+		
+		for (String student : students) {
+			System.out.println(student);
+		}
+		System.out.println("\n\n");
+		//we made a loop that can go through the whole loop and put two empty lines after it for the rest of the code !
+		
+		Iterator<String> it = students.iterator();
+		//we created the iterator named "it" that can iterate the students LinkedList...
+		System.out.println("now we print what we get with iterator :\n");
+		
+		while(it.hasNext()) {
+			System.out.println(it.next());
+		}
+		//I believe this while loop iterates through the LinkedList by verifying that the LinkedList has a next line and not empty (TRUE or FALSE BOOLEAN)
+		// and then prints the line it's already on then it points on the next one as the it.next() jumps on the next value while returning the one it was on already.
+		*/
+		/*********************************************************************************************************************************************************************/
 		
 		
 		
 		
-}
+		
+		
+	}
 }	

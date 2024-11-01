@@ -192,7 +192,7 @@ public class MazeSolver {
 				//Maze[row][colomn+1] = 0;
 				continue;
 			}
-	//We got all 4 directions of movement ! let's try them out 		
+	/*We got all 4 directions of movement ! let's try them out*/ 		
 			path.pop();
 			if(path.size() <= 0) {
 			System.out.println("No path found ! "); // I still dont understand this part where we have to use the if

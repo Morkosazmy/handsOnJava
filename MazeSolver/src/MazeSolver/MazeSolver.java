@@ -142,7 +142,7 @@ public class MazeSolver {
 		System.out.println("ooga booga " + Maze[0][4]);
 		// Let's assign the 4 directions : 
 		Maze[row][colomn] = 0;
-
+System.out.println("AMERICA YAAAA");
 		while(true) {
 			row = path.peek().row;
 			colomn = path.peek().colomn; 
@@ -200,7 +200,7 @@ public class MazeSolver {
 			}
 		}
 		
-		
+		//System.out.println("AMERICA YAAA");
 		/* end of day 10 2nd try */
 		
 		/* start of day 11 */

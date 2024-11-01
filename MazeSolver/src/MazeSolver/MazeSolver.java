@@ -4,16 +4,22 @@ import java.util.LinkedList;
 
 public class MazeSolver {
 	/*		 start of  day 9 		*/
-/*	static int[][] Maze = {
-			{2, 0, 1, 1},
-			{0, 1, 1, 0},
-			{1, 0, 0, 1},
-			{0, 1, 1, 1}
-	};*/						//TEMP comment
+	static int[][] Maze = {
+			{0,0,2,1,1,1,1,1,1,1,1},
+			{2,0,1,0,1,1,0,1,0,1,1},
+			{1,1,0,0,1,0,0,0,0,0,1},
+			{0,1,0,0,1,1,0,1,0,1,1},
+			{0,1,1,1,1,1,0,1,1,1,1},
+			{0,0,0,0,1,1,0,1,0,1,1},
+			{1,1,0,0,1,0,0,0,0,1,1},
+			{1,1,0,0,1,0,0,0,0,0,1}
+	};						//TEMP comment
 	//0 : wall
 	//1 : path
 	//2 : destination
-	
+	static LinkedList<Position> path = new LinkedList<Position>(); //Creation of a linked list 
+
+
 	
 	public static void main(String[] args) {
 		
@@ -113,37 +119,30 @@ public class MazeSolver {
 		//2ND TRY TO IMPROVE OUR CODING 
 		//We already have the Position class that contains point x and point y but we'll modify it to  " abcisse et ordonnee "
 		
-		int[][] Maze = {
-				{0,0,2,0,1},
-				{0,0,1,0,1},
-				{0,1,0,0,0},
-				{0,1,0,0,1},
-				{0,1,1,1,2},
-				{0,0,0,0,0}
-		};
+
 		// 0 : wall
 		// 1 : path
 		// 2 : destination ( u win if u find it )
 		
-		LinkedList<Position> path = new LinkedList<Position>(); //Creation of a linked list 
-		int row;
-		int colomn;
+	//	LinkedList<Position> path = new LinkedList<Position>(); //Creation of a linked list 
+	//	int row;
+	//	int colomn;
 		
-		Position p = new Position(2,3);// we have our starting position at the top right part of the maze.
-		row = p.row;
-		path.push(p);
-		System.out.println("your position is in row : " + p.row); // row = up and down
-		System.out.println("Your position is in colomn : "  + p.colomn); //colomn = left and right
-		System.out.println("Starting position value = " + path.peek().row + " , " + path.peek().colomn);
+	//	Position p = new Position(2,3);// we have our starting position at the top right part of the maze.
+	//	row = p.row;
+	//	path.push(p);
+	//	System.out.println("your position is in row : " + p.row); // row = up and down
+	//	System.out.println("Your position is in colomn : "  + p.colomn); //colomn = left and right
+	//	System.out.println("Starting position value = " + path.peek().row + " , " + path.peek().colomn);
 		// now we know where we are, we have to assign the starting row and colomn now 
-		System.out.println(Maze[0][0]);
-		row = path.peek().row;	// row assigned ( we can use row instead of typing all that )
-		colomn = path.peek().colomn; // colomn assigned ( we can use colomn instead of typing all that )
-		System.out.println("ooga booga " + Maze[0][4]);
+	//	System.out.println(Maze[0][0]);
+	//	row = path.peek().row;	// row assigned ( we can use row instead of typing all that )
+	//	colomn = path.peek().colomn; // colomn assigned ( we can use colomn instead of typing all that )
+	//	System.out.println("ooga booga " + Maze[0][4]);
 		// Let's assign the 4 directions : 
-		Maze[row][colomn] = 0;
-System.out.println("AMERICA YAAAA");
-		while(true) {
+	//	Maze[row][colomn] = 0;
+	//	System.out.println("AMERICA YAAAA");
+	/*	while(true) {
 			row = path.peek().row;
 			colomn = path.peek().colomn; 
 			Maze[row][colomn] = 0;
@@ -191,23 +190,115 @@ System.out.println("AMERICA YAAAA");
 				path.push(new Position(row , colomn + 1));
 				//Maze[row][colomn+1] = 0;
 				continue;
-			}
+			}*/
 	/*We got all 4 directions of movement ! let's try them out*/ 		
-			path.pop();
-			if(path.size() <= 0) {
-			System.out.println("No path found ! "); // I still dont understand this part where we have to use the if
+	//		path.pop();
+	//		if(path.size() <= 0) {
+	//		System.out.println("No path found ! "); // I still dont understand this part where we have to use the if
 													// statemeny 
-			}
-		}
+	//		}
+	//	}
 		
 		//System.out.println("AMERICA YAAA");
 		/* end of day 10 2nd try */
 		
 		/* start of day 11 */
+
+		//LinkedList<Position> path = new LinkedList<Position>(); //Creation of a linked list 
+		int row;
+		int colomn;
+		Position p = new Position(6,9);// we have our starting position at the top right part of the maze.
+		row = p.row;
+		path.push(p);
+		
+		row = path.peek().row;	// row assigned ( we can use row instead of typing all that )
+		colomn = path.peek().colomn; // colomn assigned ( we can use colomn instead of typing all that )
+
+		while(true) {
+			row = path.peek().row;
+			colomn = path.peek().colomn; 
+			Maze[row][colomn] = 0;
+		
+		//Move Down 
+		if (isValid(row+1,colomn)) {
+			if(Maze[row+1][colomn] == 2 ) {
+				System.out.println("Moved Down : YOU WON !");
+				break;
+			}
+			else if (Maze[row+1][colomn] == 1 ) {
+				System.out.println("Moved Down.");
+				path.push(new Position(row+1 , colomn));
+				System.out.println(path.peek().row + " " + path.peek().colomn);
+				//Maze[row+1][colomn] = 0;
+				continue;
+			}
+		}	
+		//Move Left
+		if (isValid(row,colomn-1)) {
+			if (Maze[row][colomn-1] == 2 ) {
+				System.out.println("Moved Left : YOU WON !");
+				break;
+			}
+			else if (Maze[row][colomn-1] == 1 ) {
+				System.out.println("Moved Left.");
+				path.push(new Position(row , colomn-1));
+				//Maze[row][colomn-1] = 0;
+				System.out.println(path.peek().row + " " + path.peek().colomn);
+
+				continue;
+			}
+		}
+		//Move Up
+		if (isValid(row-1,colomn)) {
+			if (Maze[row-1][colomn] == 2 ) {
+				System.out.println("Moved Up : YOU WON !");
+				break;
+			}
+			else if (Maze[row-1][colomn] == 1 ) {
+				System.out.println("Moved Up.");
+				path.push(new Position(row - 1 , colomn));
+				//Maze[row-1][colomn] = 0;
+				System.out.println(path.peek().row + " " + path.peek().colomn);
+
+				continue;
+			}
+		}
+		
+		//Move Right
+		if (isValid(row,colomn+1)) {
+			if (Maze[row][colomn+1] == 2) {
+				System.out.println("Moved Right : YOU WON !");
+				break;
+			}
+			else if (Maze[row][colomn+1] == 1 ) {
+				System.out.println("Moved Right.");
+				path.push(new Position(row , colomn + 1));
+				//Maze[row][colomn+1] = 0;
+				System.out.println(path.peek().row + " " + path.peek().colomn);
+
+				continue;
+			}
+		}
+			System.out.println("path size = " + path.size());
+			path.pop();
+				System.out.println("We moved back to :" + path.peek().row + " " + path.peek().colomn);
+					if(path.size() <= 0) {
+						System.out.println("No path found ! ");
+						return;
+					}
+					
 	
-	}
+	
+		}
 }
-	
+	public static boolean isValid(int row , int colomn) {
+		if(row < 0 || row >= Maze.length ||
+		   colomn < 0 || colomn >= Maze[row].length	) {
+			return false;
+		}
+		return true;
+	}
+}	
 
 	
 

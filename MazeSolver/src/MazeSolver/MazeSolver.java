@@ -5,14 +5,15 @@ import java.util.LinkedList;
 public class MazeSolver {
 	/*		 start of  day 9 		*/
 	static int[][] Maze = {
-			{0,0,2,1,1,1,1,1,1,1,1},
-			{2,0,1,0,1,1,0,1,0,1,1},
-			{1,1,0,0,1,0,0,0,0,0,1},
-			{0,1,0,0,1,1,0,1,0,1,1},
-			{0,1,1,1,1,1,0,1,1,1,1},
-			{0,0,0,0,1,1,0,1,0,1,1},
-			{1,1,0,0,1,0,0,0,0,1,1},
-			{1,1,0,0,1,0,0,0,0,0,1}
+			{0,0,0,1,1,1,1,1,1,1,1}, //0
+			{1,0,1,0,1,1,0,1,0,1,1}, //1
+			{1,1,0,0,1,0,0,0,0,0,1}, //2
+			{0,1,0,0,1,0,0,1,0,1,1}, //3
+			{0,1,1,1,1,2,0,1,1,1,1}, //4
+			{0,0,0,0,1,1,0,1,0,1,1}, //5
+			{1,1,0,0,1,0,0,0,0,1,1}, //6
+			{1,1,0,0,1,0,0,0,0,0,1}  //7 
+		  // 0,1,2,3,4,5,6,7,8,9,10
 	};						//TEMP comment
 	//0 : wall
 	//1 : path
@@ -20,8 +21,17 @@ public class MazeSolver {
 	static LinkedList<Position> path = new LinkedList<Position>(); //Creation of a linked list 
 
 
-	
+	// day 12 (Refactoring for more simple readability 
 	public static void main(String[] args) {
+		
+		if(SolveMaze(new Position(7,10))){
+			System.out.println("You won !");
+		}
+		else{
+			System.out.println("No path sadly !!!");
+		}
+		
+
 		
 /*		LinkedList<Position> path = new LinkedList<Position>();  //TEMP COMMENT
 
@@ -205,15 +215,15 @@ public class MazeSolver {
 		/* start of day 11 */
 
 		//LinkedList<Position> path = new LinkedList<Position>(); //Creation of a linked list 
-		int row;
-		int colomn;
-		Position p = new Position(6,9);// we have our starting position at the top right part of the maze.
-		row = p.row;
-		path.push(p);
+	//	int row;
+	//	int colomn;
+	//	Position p = new Position(7,10);// we have our starting position at the top right part of the maze.
+	//	row = p.row;
+	//	path.push(p);
 		
-		row = path.peek().row;	// row assigned ( we can use row instead of typing all that )
-		colomn = path.peek().colomn; // colomn assigned ( we can use colomn instead of typing all that )
-
+	//	row = path.peek().row;	// row assigned ( we can use row instead of typing all that )
+	//	colomn = path.peek().colomn; // colomn assigned ( we can use colomn instead of typing all that )
+/*
 		while(true) {
 			row = path.peek().row;
 			colomn = path.peek().colomn; 
@@ -281,15 +291,15 @@ public class MazeSolver {
 		}
 			System.out.println("path size = " + path.size());
 			path.pop();
-				System.out.println("We moved back to :" + path.peek().row + " " + path.peek().colomn);
+				System.out.println("We moved back to :");
 					if(path.size() <= 0) {
 						System.out.println("No path found ! ");
 						return;
 					}
 					
+	*/
 	
-	
-		}
+		
 }
 	public static boolean isValid(int row , int colomn) {
 		if(row < 0 || row >= Maze.length ||
@@ -300,7 +310,110 @@ public class MazeSolver {
 	}
 	
 		/*	end of day 11	*/
-}	
+		
+		/* start of day 12 */
 
+	private static boolean SolveMaze(Position p) {
+	int row;
+	int colomn;
+	//Position p = new Position(7,10);// we have our starting position at the top right part of the maze.
+	row = p.row;
+	path.push(p);
+	
+	row = path.peek().row;	// row assigned ( we can use row instead of typing all that )
+	colomn = path.peek().colomn; // colomn assigned ( we can use colomn instead of typing all that )
+
+	
+	while(true) {
+		row = path.peek().row;
+		colomn = path.peek().colomn; 
+		Maze[row][colomn] = 0;
+	
+	//Move Down 
+	if (isValid(row+1,colomn)) {
+		if(Maze[row+1][colomn] == 2 ) {
+			System.out.println("Moved Down");
+			return true;
+		}
+		else if (Maze[row+1][colomn] == 1 ) {
+			System.out.println("Moved Down.");
+			path.push(new Position(row+1 , colomn));
+			System.out.println(path.peek().row + " " + path.peek().colomn);
+			//Maze[row+1][colomn] = 0;
+			continue;
+		}
+	}	
+	//Move Left
+	if (isValid(row,colomn-1)) {
+		if (Maze[row][colomn-1] == 2 ) {
+			System.out.println("Moved Left");
+			return true;
+		}
+		else if (Maze[row][colomn-1] == 1 ) {
+			System.out.println("Moved Left.");
+			path.push(new Position(row , colomn-1));
+			//Maze[row][colomn-1] = 0;
+			System.out.println(path.peek().row + " " + path.peek().colomn);
+
+			continue;
+		}
+	}
+	//Move Up
+	if (isValid(row-1,colomn)) {
+		if (Maze[row-1][colomn] == 2 ) {
+			System.out.println("Moved Up");
+			return true;
+		}
+		else if (Maze[row-1][colomn] == 1 ) {
+			System.out.println("Moved Up.");
+			path.push(new Position(row - 1 , colomn));
+			//Maze[row-1][colomn] = 0;
+			System.out.println(path.peek().row + " " + path.peek().colomn);
+
+			continue;
+		}
+	}
+	
+	//Move Right
+	if (isValid(row,colomn+1)) {
+		if (Maze[row][colomn+1] == 2) {
+			System.out.println("Moved Right");
+			return true;
+		}
+		else if (Maze[row][colomn+1] == 1 ) {
+			System.out.println("Moved Right.");
+			path.push(new Position(row , colomn + 1));
+			//Maze[row][colomn+1] = 0;
+			System.out.println(path.peek().row + " " + path.peek().colomn);
+
+			continue;
+		}
+	}
+		System.out.println("path size = " + path.size());
+		path.pop();
+			System.out.println("We moved back to :");
+				if(path.size() <= 0) {
+				//	System.out.println("No path found ! ");
+					return false;
+				}
+
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		// 1 2 3 4 || 1 3 4 2 || 1 2 4 3 || 1 3 2 4 || 1 4 2 3 || 1 4 3 2 || 
+	 	// 2 1 3 4 || 2 1 4 3 || 2 3 1 4 || 2 3 4 1 || 2 4 1 3 || 2 4 3 1 ||
+		// 3 1 2 4 || 3 1 4 2 || 3 2 1 4 || 3 2 4 1 || 3 4 1 2 || 3 4 2 1 ||
+		// 4 1 2 3 || 4 1 3 2 || 4 2 1 3 || 4 2 3 1 || 4 3 1 2 || 4 3 2 1 ||
+}	
+}
 	
 

@@ -1,11 +1,15 @@
 package MazeSolver;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class MazeSolver {
 	/*		 start of  day 9 		*/
 	
-	static Maze m = new Maze();
+	//static Maze m = new Maze();
+
+	//Maze n = new Maze();
+	
 /*	static int[][] Maze = {
 			{0,0,0,1,1,1,1,1,1,1,1}, //0
 			{1,0,1,0,1,1,0,1,0,1,1}, //1
@@ -25,8 +29,53 @@ public class MazeSolver {
 
 	// day 12 (Refactoring for more simple readability 
 	public static void main(String[] args) {
+		ArrayList<Maze> mazes = new ArrayList<Maze>();
+
+		Maze m = new Maze();
 		
-		int[][] maze =  {{0,0,0,1,1,1,1,1,1,1,1}, //0
+		int[][] m_maze = {
+				{0,0,0,1,1,1,1,1,1,1,1}, //0
+				{1,0,1,0,1,1,0,1,0,1,1}, //1
+				{1,1,0,0,1,0,0,0,0,0,1}, //2
+				{0,1,0,0,1,0,0,1,0,1,1}, //3
+				{0,1,1,1,1,2,0,1,1,1,1}, //4
+				{0,0,0,0,1,1,0,1,0,1,1}, //5
+				{1,1,0,0,1,0,0,0,0,1,1}, //6
+				{1,1,0,0,1,0,0,0,0,0,1}  //7
+			  // 0,1,2,3,4,5,6,7,8,9,10
+
+		};
+		m.maze = m_maze;
+		
+		m.start = new Position(7,10);
+		
+		m.path = new LinkedList<Position>();
+		
+		
+		Maze n = new Maze();
+		
+		int[][] n_maze = {
+				{0,0,0,1,1,1,1,1,1,1,1}, //0
+				{1,0,1,0,1,1,0,1,0,1,1}, //1
+				{1,1,0,0,1,0,0,0,0,0,1}, //2
+				{0,1,0,0,1,0,0,1,0,1,1}, //3
+				{0,1,1,1,1,2,0,1,1,1,1}, //4
+				{0,0,0,0,1,1,0,1,0,1,1}, //5
+				{1,1,0,0,1,0,0,0,0,1,1}, //6
+				{1,1,0,0,1,0,0,0,0,0,1}  //7
+			  // 0,1,2,3,4,5,6,7,8,9,10
+
+		};
+		n.maze = n_maze;
+		
+		n.start = new Position(4,3);
+		
+		n.path = new LinkedList<Position>();
+		
+		mazes.add(m);
+		mazes.add(n);
+		
+	/*	int[][] maze =  {{0,0,0,1,1,1,1,1,1,1,1}, //0
 						 {1,0,1,0,1,1,0,1,0,1,1}, //1
 						 {1,1,0,0,1,0,0,0,0,0,1}, //2
 						 {0,1,0,0,1,0,0,1,0,1,1}, //3
@@ -40,15 +89,18 @@ public class MazeSolver {
 		m.maze = maze;
 		m.start = new Position(7,10);
 		m.path = new LinkedList<Position>();
-		
-		
-		if(SolveMaze(new Position(7,10))){
-			System.out.println("You won !");
-		}
-		else{
-			System.out.println("No path sadly !!!");
-		}
-		
+	*/	
+		int i = 0 ;
+		while(i<mazes.size()) {
+			System.out.println(i);
+			if(SolveMaze(mazes.get(i))){
+				System.out.println("You won !\n\n");
+			}
+			else{
+				System.out.println("No path sadly !!!");
+			}
+			i++;
+		}	
 
 		
 /*		LinkedList<Position> path = new LinkedList<Position>();  //TEMP COMMENT
@@ -319,7 +371,7 @@ public class MazeSolver {
 	
 		
 }
-	public static boolean isValid(int row , int colomn) {
+	public static boolean isValid(int row , int colomn, Maze m) {
 		if(row < 0 || row >= m.maze.length ||
 		   colomn < 0 || colomn >= m.maze[row].length	) {
 			return false;
@@ -331,7 +383,8 @@ public class MazeSolver {
 		
 		/* start of day 12 */
 
-	private static boolean SolveMaze(Position p) {
+	private static boolean SolveMaze(Maze m) {
+	Position p = m.start;
 	int row;
 	int colomn;
 	//Position p = new Position(7,10);// we have our starting position at the top right part of the maze.
@@ -348,7 +401,7 @@ public class MazeSolver {
 		m.maze[row][colomn] = 0;
 	
 	//Move Down 
-	if (isValid(row+1,colomn)) {
+	if (isValid(row+1,colomn, m)) {
 		if(m.maze[row+1][colomn] == 2 ) {
 			System.out.println("Moved Down");
 			return true;
@@ -362,7 +415,7 @@ public class MazeSolver {
 		}
 	}	
 	//Move Left
-	if (isValid(row,colomn-1)) {
+	if (isValid(row,colomn-1, m)) {
 		if (m.maze[row][colomn-1] == 2 ) {
 			System.out.println("Moved Left");
 			return true;
@@ -377,7 +430,7 @@ public class MazeSolver {
 		}
 	}
 	//Move Up
-	if (isValid(row-1,colomn)) {
+	if (isValid(row-1,colomn, m)) {
 		if (m.maze[row-1][colomn] == 2 ) {
 			System.out.println("Moved Up");
 			return true;
@@ -393,7 +446,7 @@ public class MazeSolver {
 	}
 	
 	//Move Right
-	if (isValid(row,colomn+1)) {
+	if (isValid(row,colomn+1, m)) {
 		if (m.maze[row][colomn+1] == 2) {
 			System.out.println("Moved Right");
 			return true;
@@ -409,7 +462,7 @@ public class MazeSolver {
 	}
 		System.out.println("path size = " + m.path.size());
 		m.path.pop();
-			System.out.println("We moved back to :");
+			System.out.println("We moved back.\n");
 				if(m.path.size() <= 0) {
 				//	System.out.println("No path found ! ");
 					return false;

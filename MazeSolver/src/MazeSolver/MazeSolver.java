@@ -4,7 +4,9 @@ import java.util.LinkedList;
 
 public class MazeSolver {
 	/*		 start of  day 9 		*/
-	static int[][] Maze = {
+	
+	static Maze m = new Maze();
+/*	static int[][] Maze = {
 			{0,0,0,1,1,1,1,1,1,1,1}, //0
 			{1,0,1,0,1,1,0,1,0,1,1}, //1
 			{1,1,0,0,1,0,0,0,0,0,1}, //2
@@ -14,15 +16,31 @@ public class MazeSolver {
 			{1,1,0,0,1,0,0,0,0,1,1}, //6
 			{1,1,0,0,1,0,0,0,0,0,1}  //7 
 		  // 0,1,2,3,4,5,6,7,8,9,10
-	};						//TEMP comment
+	};*/						//TEMP comment
 	//0 : wall
 	//1 : path
 	//2 : destination
-	static LinkedList<Position> path = new LinkedList<Position>(); //Creation of a linked list 
+	//static LinkedList<Position> path = new LinkedList<Position>(); //Creation of a linked list 
 
 
 	// day 12 (Refactoring for more simple readability 
 	public static void main(String[] args) {
+		
+		int[][] maze =  {{0,0,0,1,1,1,1,1,1,1,1}, //0
+						 {1,0,1,0,1,1,0,1,0,1,1}, //1
+						 {1,1,0,0,1,0,0,0,0,0,1}, //2
+						 {0,1,0,0,1,0,0,1,0,1,1}, //3
+						 {0,1,1,1,1,2,0,1,1,1,1}, //4
+						 {0,0,0,0,1,1,0,1,0,1,1}, //5
+						 {1,1,0,0,1,0,0,0,0,1,1}, //6
+						 {1,1,0,0,1,0,0,0,0,0,1}  //7 
+						 // 0,1,2,3,4,5,6,7,8,9,10
+						};		
+		
+		m.maze = maze;
+		m.start = new Position(7,10);
+		m.path = new LinkedList<Position>();
+		
 		
 		if(SolveMaze(new Position(7,10))){
 			System.out.println("You won !");
@@ -302,8 +320,8 @@ public class MazeSolver {
 		
 }
 	public static boolean isValid(int row , int colomn) {
-		if(row < 0 || row >= Maze.length ||
-		   colomn < 0 || colomn >= Maze[row].length	) {
+		if(row < 0 || row >= m.maze.length ||
+		   colomn < 0 || colomn >= m.maze[row].length	) {
 			return false;
 		}
 		return true;
@@ -318,57 +336,57 @@ public class MazeSolver {
 	int colomn;
 	//Position p = new Position(7,10);// we have our starting position at the top right part of the maze.
 	row = p.row;
-	path.push(p);
+	m.path.push(p);
 	
-	row = path.peek().row;	// row assigned ( we can use row instead of typing all that )
-	colomn = path.peek().colomn; // colomn assigned ( we can use colomn instead of typing all that )
+	row = m.path.peek().row;	// row assigned ( we can use row instead of typing all that )
+	colomn = m.path.peek().colomn; // colomn assigned ( we can use colomn instead of typing all that )
 
 	
 	while(true) {
-		row = path.peek().row;
-		colomn = path.peek().colomn; 
-		Maze[row][colomn] = 0;
+		row = m.path.peek().row;
+		colomn = m.path.peek().colomn; 
+		m.maze[row][colomn] = 0;
 	
 	//Move Down 
 	if (isValid(row+1,colomn)) {
-		if(Maze[row+1][colomn] == 2 ) {
+		if(m.maze[row+1][colomn] == 2 ) {
 			System.out.println("Moved Down");
 			return true;
 		}
-		else if (Maze[row+1][colomn] == 1 ) {
+		else if (m.maze[row+1][colomn] == 1 ) {
 			System.out.println("Moved Down.");
-			path.push(new Position(row+1 , colomn));
-			System.out.println(path.peek().row + " " + path.peek().colomn);
+			m.path.push(new Position(row+1 , colomn));
+			System.out.println(m.path.peek().row + " " + m.path.peek().colomn);
 			//Maze[row+1][colomn] = 0;
 			continue;
 		}
 	}	
 	//Move Left
 	if (isValid(row,colomn-1)) {
-		if (Maze[row][colomn-1] == 2 ) {
+		if (m.maze[row][colomn-1] == 2 ) {
 			System.out.println("Moved Left");
 			return true;
 		}
-		else if (Maze[row][colomn-1] == 1 ) {
+		else if (m.maze[row][colomn-1] == 1 ) {
 			System.out.println("Moved Left.");
-			path.push(new Position(row , colomn-1));
+			m.path.push(new Position(row , colomn-1));
 			//Maze[row][colomn-1] = 0;
-			System.out.println(path.peek().row + " " + path.peek().colomn);
+			System.out.println(m.path.peek().row + " " + m.path.peek().colomn);
 
 			continue;
 		}
 	}
 	//Move Up
 	if (isValid(row-1,colomn)) {
-		if (Maze[row-1][colomn] == 2 ) {
+		if (m.maze[row-1][colomn] == 2 ) {
 			System.out.println("Moved Up");
 			return true;
 		}
-		else if (Maze[row-1][colomn] == 1 ) {
+		else if (m.maze[row-1][colomn] == 1 ) {
 			System.out.println("Moved Up.");
-			path.push(new Position(row - 1 , colomn));
+			m.path.push(new Position(row - 1 , colomn));
 			//Maze[row-1][colomn] = 0;
-			System.out.println(path.peek().row + " " + path.peek().colomn);
+			System.out.println(m.path.peek().row + " " + m.path.peek().colomn);
 
 			continue;
 		}
@@ -376,23 +394,23 @@ public class MazeSolver {
 	
 	//Move Right
 	if (isValid(row,colomn+1)) {
-		if (Maze[row][colomn+1] == 2) {
+		if (m.maze[row][colomn+1] == 2) {
 			System.out.println("Moved Right");
 			return true;
 		}
-		else if (Maze[row][colomn+1] == 1 ) {
+		else if (m.maze[row][colomn+1] == 1 ) {
 			System.out.println("Moved Right.");
-			path.push(new Position(row , colomn + 1));
+			m.path.push(new Position(row , colomn + 1));
 			//Maze[row][colomn+1] = 0;
-			System.out.println(path.peek().row + " " + path.peek().colomn);
+			System.out.println(m.path.peek().row + " " + m.path.peek().colomn);
 
 			continue;
 		}
 	}
-		System.out.println("path size = " + path.size());
-		path.pop();
+		System.out.println("path size = " + m.path.size());
+		m.path.pop();
 			System.out.println("We moved back to :");
-				if(path.size() <= 0) {
+				if(m.path.size() <= 0) {
 				//	System.out.println("No path found ! ");
 					return false;
 				}

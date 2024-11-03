@@ -503,9 +503,9 @@ public class MazeSolver {
 				}
 
 	}	
+	
 	/*end of day 15*/
 
-	
 }	
 }
 	

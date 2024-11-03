@@ -30,30 +30,39 @@ public class MazeSolver {
 			}
 			i++;
 		}	
-		
+	
 }
 	
 	private static ArrayList<Maze> readMazes() throws FileNotFoundException {
 		ArrayList<Maze> mazes = new ArrayList<Maze>();
-		Maze m = new Maze();
-		
+
+		int numberOfMazes = 0;
 		Scanner scanner = new Scanner(new File("mazes.txt"));
+		while(scanner.hasNext()) {
+		Maze m = new Maze();
+
+		//Scanner scanner = new Scanner(new File("mazes.txt"));
 		int rows = Integer.parseInt(scanner.nextLine());
 		m.maze = new int[rows][];
 		
 		for (int i = 0; i<rows;i++) {
 			String line = scanner.nextLine();
-			m.maze[i] = Arrays.stream(line.split(",")).mapToInt(Integer::parseInt).toArray();
-			
+			m.maze[i] = Arrays.stream(line.split(",")).mapToInt(Integer::parseInt).toArray();	
 		}
 		
 		m.start = new Position(Integer.parseInt(scanner.nextLine()), Integer.parseInt(scanner.nextLine()));
 		m.path = new LinkedList<Position>();
 		
 		mazes.add(m);
-				return mazes;
+		scanner.nextLine();
+		
+		numberOfMazes++;		
 	}
-	
+		scanner.close();
+		System.out.println("number of mazes = " + numberOfMazes);
+		return mazes;
+
+}	
 	
 	
 	public static boolean isValid(int row , int colomn, Maze m) {

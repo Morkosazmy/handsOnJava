@@ -1,7 +1,12 @@
 package MazeSolver;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.Scanner;
+import java.lang.*;
 
 public class MazeSolver {
 	/*		 start of  day 9 		*/
@@ -28,9 +33,41 @@ public class MazeSolver {
 
 
 	// day 12 (Refactoring for more simple readability 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		ArrayList<Maze> mazes = new ArrayList<Maze>();
-
+		//int i;
+		Maze m = new Maze();
+		
+		Scanner scanner = new Scanner(new File("mazes.txt"));
+		int rows = Integer.parseInt(scanner.nextLine());
+		m.maze = new int[rows][];
+		//String line;
+		//int[] numbers = Arrays.stream(line.split(", ")).mapToInt(Integer::parseInt).toArray();
+		
+		
+		//String items[] = scanner.nextLine().split(", ");
+		//int[] numbers = Arrays.stream(scanner.nextLine().split(", ")).mapToInt(Integer::parseInt).toArray();
+		
+		for (int i = 0; i<rows;i++) {
+			String line = scanner.nextLine();
+			m.maze[i] = Arrays.stream(line.split(",")).mapToInt(Integer::parseInt).toArray();
+			
+		}
+		
+		m.start = new Position(Integer.parseInt(scanner.nextLine()), Integer.parseInt(scanner.nextLine()));
+	//	m.path = new LinkedList<Position>();
+		
+		mazes.add(m);
+		
+	//	System.out.println(numbers.length + " " + numbers);
+	/*	for( i = 0; i<numbers.length; i++) {
+		System.out.print(numbers[i] + ", ");
+		}*/
+	//	System.out.println();
+				
+		
+		
+/*
 		Maze m = new Maze();
 		
 		int[][] m_maze = {
@@ -74,7 +111,7 @@ public class MazeSolver {
 		
 		mazes.add(m);
 		mazes.add(n);
-		
+		*/
 	/*	int[][] maze =  {{0,0,0,1,1,1,1,1,1,1,1}, //0
 						 {1,0,1,0,1,1,0,1,0,1,1}, //1
 						 {1,1,0,0,1,0,0,0,0,0,1}, //2
@@ -388,7 +425,7 @@ public class MazeSolver {
 	int row;
 	int colomn;
 	//Position p = new Position(7,10);// we have our starting position at the top right part of the maze.
-	row = p.row;
+	//row = p.row;
 	m.path.push(p);
 	
 	row = m.path.peek().row;	// row assigned ( we can use row instead of typing all that )
@@ -410,7 +447,6 @@ public class MazeSolver {
 			System.out.println("Moved Down.");
 			m.path.push(new Position(row+1 , colomn));
 			System.out.println(m.path.peek().row + " " + m.path.peek().colomn);
-			//Maze[row+1][colomn] = 0;
 			continue;
 		}
 	}	
@@ -423,7 +459,6 @@ public class MazeSolver {
 		else if (m.maze[row][colomn-1] == 1 ) {
 			System.out.println("Moved Left.");
 			m.path.push(new Position(row , colomn-1));
-			//Maze[row][colomn-1] = 0;
 			System.out.println(m.path.peek().row + " " + m.path.peek().colomn);
 
 			continue;
@@ -438,7 +473,6 @@ public class MazeSolver {
 		else if (m.maze[row-1][colomn] == 1 ) {
 			System.out.println("Moved Up.");
 			m.path.push(new Position(row - 1 , colomn));
-			//Maze[row-1][colomn] = 0;
 			System.out.println(m.path.peek().row + " " + m.path.peek().colomn);
 
 			continue;
@@ -469,21 +503,9 @@ public class MazeSolver {
 				}
 
 	}	
+	/*end of day 15*/
+
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		// 1 2 3 4 || 1 3 4 2 || 1 2 4 3 || 1 3 2 4 || 1 4 2 3 || 1 4 3 2 || 
-	 	// 2 1 3 4 || 2 1 4 3 || 2 3 1 4 || 2 3 4 1 || 2 4 1 3 || 2 4 3 1 ||
-		// 3 1 2 4 || 3 1 4 2 || 3 2 1 4 || 3 2 4 1 || 3 4 1 2 || 3 4 2 1 ||
-		// 4 1 2 3 || 4 1 3 2 || 4 2 1 3 || 4 2 3 1 || 4 3 1 2 || 4 3 2 1 ||
 }	
 }
 	

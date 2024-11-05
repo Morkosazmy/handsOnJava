@@ -13,6 +13,9 @@ public class Person {
 		this.email = email;
 		this.lastName = lastName;
 	}
+	Person(){
+		
+	}
 @Override
 public int hashCode() {
 	return Objects.hash(email,lastName,position);
@@ -52,6 +55,8 @@ public int hashCode() {
 		return true;
 	}
 	
-	
+	public String outPut() {
+		return email + " , " + lastName; 
+	}
 	
 }

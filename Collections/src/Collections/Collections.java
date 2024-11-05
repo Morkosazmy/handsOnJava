@@ -1,5 +1,6 @@
 package Collections;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -8,7 +9,121 @@ public class Collections {
 
 	public static void main(String[] args) {
 
-		HashSet<Person> people = new HashSet<Person>();
+		
+	/*	Item<Person, Person> item = new Item<Person, Person>();
+		Person perso = new Person("Stronk baby Kronk","baby Kronk more Stronk");
+		item.setX(perso);
+		Person newPerso = item.getX();
+		item.setY(newPerso);
+		
+		
+		
+		System.out.println(item.getX().toString());
+		System.out.println();
+		System.out.println(newPerso.outPut());
+		System.out.println();
+	*/
+	
+		ArrayList<Admin> admins = new ArrayList<Admin>();
+		ArrayList<Person> people = new ArrayList<Person>();
+		ArrayList<Person> newAdmins = new ArrayList<Person>();
+		
+		Admin firstAdmin = new Admin();
+		firstAdmin.lastName = "Sinner";
+		
+		//1st this admin is of type admin and the doSomething method only works on lists of people ! 
+
+		admins.add(firstAdmin); // the first admin is in the admins list ! 
+
+		/*admins.doSomething();*/ // wont work as it's in the admins list not in a <Person> list ! 
+		
+	/*	for(Admin admin : admins) {
+			newAdmins.add((Person) admin); // making sure the admin added is a Person type ! 
+		}*/
+		System.out.println(newAdmins.get(0)); // this one gets the first admin correctly
+		
+		doSomething(admins); // It works on the newAdmins List as it's considered a Person List even though it contains admins ! 
+		
+		
+		
+		
+		
+		
+	/* doSomething(admins); */ 
+		
+		// cause we cant pass an ArrayList of admins when the method takes the input of a ArrayList of people ! 
+							 // even with the fact the Admin is inhereted from a Person.
+		
+	/*	doSomething(people);
+		Admin firstAdmin = new Admin();
+		firstAdmin.lastName = "Steve";
+	*/	
+	//	admins.add(firstAdmin); 
+		
+		// to fix that problem we'll have to make an ArrayList of <Person> and call it newAdmins or whatever and add all the elements of the 
+		// admins list to this newAdmins list ! 
+		
+		
+		
+	//	admins.add(firstAdmin);
+
+	//	System.out.println(people.get(0).lastName);
+	//	System.out.println(admins.get(0).lastName);
+		
+	//	doSomething(firstAdmin);
+		
+	/*	for(Person admin : people) {
+			System.out.println(admin.lastName);
+			doSomething(admin); // cant use it in a list of people as it's a list of admins that should be used ! 
+
+		}
+	*/	
+	/*	for(Person admin : people) {
+			System.out.println(admin.lastName);
+			doSomething(admin);
+		}
+		*/
+	/*	for (Person admin : admins) {
+			people.add(admin);
+		}
+	*/	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+/*		
+ 		Item<Integer, String> item1 = new Item<Integer, String>();
+		Item<Integer, String> item2 = new Item<Integer, String>();
+		Item<Integer, String> item3 = new Item<Integer, String>();
+		
+		item1.setX(3);
+		item1.setY("Crossbow");
+		item2.setX(33);
+		item2.setY("Shield");
+		item3.setX(7);
+		item3.setY("Sword");
+
+
+
+		ArrayList<Item<Integer, String>> items = new ArrayList<Item<Integer, String>>();
+		items.add(item1);
+		items.add(item2);
+		items.add(item3);
+		
+		
+		for (Item item : items) {
+			System.out.println("Item's name = " + item.getY() + " , Quantity = " + item.getX());
+			//System.out.println("Quantity = " + item.getX() + "\n");
+		}
+		
+	*/	
+		
+	/*	HashSet<Person> people = new HashSet<Person>();
 		
 	
 		Person p = new Person ("email@gmail.com","Sally");
@@ -64,7 +179,7 @@ public class Collections {
 		HashMap<String, Person> peopleMap = new HashMap<String, Person>();
 		peopleMap.put("email@gmail.com", q);
 		System.out.println(peopleMap.containsKey("email@gmail.com"));
-		System.out.println(peopleMap.containsValue(q));
+		System.out.println(peopleMap.containsValue(q));*/
 		/*	names.add("ahmed");
 		names.add("3ood");
 		names.add("gebna");
@@ -144,6 +259,13 @@ public class Collections {
 	*/	
 	}
 
+	
+	/*static void doSomething(Person p) {
+		System.out.println(p);
+	}*/	
+	static void doSomething(ArrayList<? extends Person> admins) {
+		System.out.println(admins);
+	}
 }
 
 

@@ -40,7 +40,7 @@ public class Collections {
 	/*	for(Admin admin : admins) {
 			newAdmins.add((Person) admin); // making sure the admin added is a Person type ! 
 		}*/
-		System.out.println(newAdmins.get(0)); // this one gets the first admin correctly
+		//System.out.println(newAdmins.get(0)); // this one gets the first admin correctly
 		
 		doSomething(admins); // It works on the newAdmins List as it's considered a Person List even though it contains admins ! 
 		
@@ -264,6 +264,9 @@ public class Collections {
 		System.out.println(p);
 	}*/	
 	static void doSomething(ArrayList<? extends Person> admins) {
+		for(Person admin : admins) {
+			System.out.println("Last name = " + admin.lastName);
+		}
 		System.out.println(admins);
 	}
 }
